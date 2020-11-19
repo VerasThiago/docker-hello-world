@@ -8,11 +8,14 @@
     "lint:node": "yarn eslint ./src --cache --ext ts --config .eslintrc",
     "format-lint": "yarn format && yarn lint:node",
     "build-clean": "rm -rf build",
+    "build-clean:win": "Rmdir -rf build",
     "build": "yarn build-clean && yarn tsc",
+    "build:win": "yarn tsc",
     "test": "jest",
     "prepublishOnly": "bash ./scripts/publishLock.sh",
     "ci:test": "yarn test --passWithNoTests --ci",
     "start": "yarn build && node build/index.js",
+    "start:win": "yarn build:win && node build/index.js",
     "build-incremental": "yarn tsc --incremental",
     "ci:prettier-check": "prettier --check --config ./.prettierrc \"./src/**/*.{ts,tsx,js,jsx,json}\"",
     "watch": "nodemon --watch 'src/**/*' -e ts,tsx --exec ts-node ./src/index.ts"
@@ -30,7 +33,6 @@
   "dependencies": {
     "@types/jest": "^26.0.3",
     "async-retry": "^1.3.1",
-    "eslint": "^7.3.1",
     "eslint-config-vtex": "^12.6.0",
     "get-port": "^5.1.1",
     "jest": "^26.1.0",
